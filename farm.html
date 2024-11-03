@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muzaffarpur Layer Farm</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: url('d:/html css/egg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        #farmsContainer {
+            display: flex;
+            flex-direction: row-reverse; /* Puts FARM 1 on the right and FARM 2 on the left */
+            justify-content: space-between;
+            gap: 20px;
+        }
+        table {
+            border: 1px solid #000;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Optional background to improve readability */
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #but {
+            width: 100px;
+            height: 30px;
+            margin-top: 20px;
+        }
+        #date {
+            width: 100px;
+            height: 30px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <label>Date</label>
+    <input type="date" id="date" required>
+
+    <div id="farmsContainer">
+        <table>
+            <tr>
+                <td>
+                    <form id="farm2Form">
+                        <fieldset>
+                            <legend>FARM 2</legend>
+                            <label>Total box</label>
+                            <input type="number" id="totalBox2" placeholder="कुल बॉक्स मात्रा">
+                            <br><br>
+                            <label>Loose pcs</label>
+                            <input type="number" id="loosePcs2" placeholder="ढीले पीस" required>
+                            <br><br>
+                            <label>Big pcs</label>
+                            <input type="number" id="bigPcs2" placeholder="बड़े पीस" required>
+                            <br><br>
+                            <label>Broken pcs</label>
+                            <input type="number" id="brokenPcs2" placeholder="टूटे हुए पीस" required>
+                            <br><br>
+                            <label>Defective pcs</label>
+                            <input type="number" id="defectivePcs2" placeholder="दोषपूर्ण पीस" required>
+                            <br><br>
+                            <label>Mortality</label>
+                            <input type="number" id="mortality2" placeholder="मृत्यु दर" required>
+                        </fieldset>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <form id="farm1Form">
+                        <fieldset>
+                            <legend>FARM 1</legend>
+                            <label>Total box</label>
+                            <input type="number" id="totalBox1" placeholder="कुल बॉक्स मात्रा">
+                            <br><br>
+                            <label>Loose pcs</label>
+                            <input type="number" id="loosePcs1" placeholder="ढीले पीस" required>
+                            <br><br>
+                            <label>Big pcs</label>
+                            <input type="number" id="bigPcs1" placeholder="बड़े पीस" required>
+                            <br><br>
+                            <label>Broken pcs</label>
+                            <input type="number" id="brokenPcs1" placeholder="टूटे हुए पीस" required>
+                            <br><br>
+                            <label>Defective pcs</label>
+                            <input type="number" id="defectivePcs1" placeholder="दोषपूर्ण पीस" required>
+                            <br><br>
+                            <label>Mortality</label>
+                            <input type="number" id="mortality1" placeholder="मृत्यु दर" required>
+                        </fieldset>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <button id="but" onclick="calculateTotal()">Calculate</button>
+    <div id="result"></div>
+
+    <table>
+        <tr>
+            <td>
+                <form id="balance">
+                    <fieldset>
+                        <legend>Profit</legend>
+                        <label>Enter amount:</label>
+                        <input type="number" placeholder="आज का लाभ">
+                        <label>Quantity:</label>
+                        <input type="number" placeholder="">
+                        <label>Seller name/Product name</label>
+                        <input type="text" placeholder="">
+                    </fieldset>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>
+                <form id="expense">
+                    <fieldset>
+                        <legend>Expense</legend>
+                        <label>Enter amount:</label>
+                        <input type="number" placeholder="आज का खर्च">
+                        <label>Enter quantity:</label>
+                        <input type="number" placeholder="">
+                    </fieldset>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function calculateTotal() {
+            const totalBox1 = parseFloat(document.getElementById('totalBox1').value) || 0;
+            const totalBox2 = parseFloat(document.getElementById('totalBox2').value) || 0;
+            const bigPcs1 = parseFloat(document.getElementById('bigPcs1').value) || 0;
+            const bigPcs2 = parseFloat(document.getElementById('bigPcs2').value) || 0;
+            const brokenPcs1 = parseFloat(document.getElementById('brokenPcs1').value) || 0;
+            const brokenPcs2 = parseFloat(document.getElementById('brokenPcs2').value) || 0;
+
+            const totalBoxes = totalBox1 + totalBox2;
+            const totalBigPcs = bigPcs1 + bigPcs2;
+            const totalBrokenPcs = brokenPcs1 + brokenPcs2;
+
+            document.getElementById('result').innerHTML = `
+                Total Boxes: ${totalBoxes}<br>
+                Total Big Pieces: ${totalBigPcs}<br>
+                Total Broken Pieces: ${totalBrokenPcs}
+            `;
+        }
+    </script>
+</body>
+</html>
